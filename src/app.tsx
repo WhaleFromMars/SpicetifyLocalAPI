@@ -80,50 +80,61 @@ async function main() {
             case 'ping':
                 socket.send('pong')
                 break
+
             case 'pong':
                 break
+
             case 'pause':
                 player.pause()
                 break
+
             case 'play':
                 player.play()
                 break
+
             case 'playUri':
                 if (param) {
                     console.log(param)
                     player.playUri(param)
                 }
                 break
+
             case 'volume':
                 if (param) {
                     const volume = parseInt(param, 10)
                     player.setVolume(volume)
                 }
                 break
+
             case 'repeat':
                 if (param) {
                     const repeatMode = parseInt(param, 10)
                     Spicetify.Player.setRepeat(repeatMode)
                 }
                 break
+
             case 'mute':
                 if (param) {
                     const mute = param === 'true'
                     Spicetify.Player.setMute(mute)
                 }
                 break
+
             case 'shuffle':
                 if (param) {
                     const shuffle = param === 'true'
                     Spicetify.Player.setShuffle(shuffle)
                 }
                 break
+
             case 'getProgress':
                 const progress = Spicetify.Player.getProgress()
                 socket.send(`progress|${progress.toString()}`)
                 break
-            case 'getMarket':
-                const market = Spicetify.Platform.user
+
+            // case 'getMarket':
+            //     const market = Spicetify.Platform.user
+            //     break
 
             default:
                 console.warn('Unknown command:', command)
